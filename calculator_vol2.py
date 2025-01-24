@@ -21,6 +21,7 @@ class CalculatorApp:
             ('4', 2, 0), ('5', 2, 1), ('6', 2, 2), ('*', 2, 3),
             ('1', 3, 0), ('2', 3, 1), ('3', 3, 2), ('-', 3, 3),
             ('C', 4, 0), ('0', 4, 1), ('=', 4, 2), ('+', 4, 3),
+            ('%', 5, 0), ('x²', 5, 1), ('x³', 5, 2)
         ]
 
         # Create buttons dynamically
@@ -52,6 +53,30 @@ class CalculatorApp:
                 self.entry.insert(tk.END, "Error")
         elif char == "C":
             self.entry.delete(0, tk.END)  # Clear the entry field
+        elif char == "%":
+            try:
+                value = float(self.entry.get())
+                self.entry.delete(0, tk.END)
+                self.entry.insert(tk.END, str(value / 100))  # Convert to percentage
+            except ValueError:
+                self.entry.delete(0, tk.END)
+                self.entry.insert(tk.END, "Error")
+        elif char == "x²":
+            try:
+                value = float(self.entry.get())
+                self.entry.delete(0, tk.END)
+                self.entry.insert(tk.END, str(value ** 2))  # Square the number
+            except ValueError:
+                self.entry.delete(0, tk.END)
+                self.entry.insert(tk.END, "Error")
+        elif char == "x³":
+            try:
+                value = float(self.entry.get())
+                self.entry.delete(0, tk.END)
+                self.entry.insert(tk.END, str(value ** 3))  # Cube the number
+            except ValueError:
+                self.entry.delete(0, tk.END)
+                self.entry.insert(tk.END, "Error")
         else:
             # Append character to the entry field
             current = self.entry.get()
